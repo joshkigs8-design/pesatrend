@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PESATREND</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<header>
+    <h1>PESATREND Dashboard</h1>
+    <select id="languageSelect">
+        <option value="en">English</option>
+        <option value="sw">Swahili</option>
+    </select>
+</header>
+
+<!-- Business Info Modal -->
+<div id="businessInfoModal" class="modal">
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <h2>Business Information</h2>
+    <form id="businessInfoForm">
+      <label>Business Name:</label>
+      <input type="text" id="businessName" placeholder="My Shop" required>
+      <label>Phone Number:</label>
+      <input type="text" id="businessPhone" placeholder="0712345678" required>
+      <button type="submit">Save</button>
+    </form>
+  </div>
+</div>
+
+<!-- Business Type -->
+<div id="businessTypeDiv">
+    <label id="businessTypeLabel">Select your business type:</label>
+    <select id="businessType">
+        <option value="retail">Retail</option>
+        <option value="service">Service</option>
+        <option value="mixed">Mixed</option>
+    </select>
+    <button id="setBusinessTypeBtn">Set</button>
+</div>
+
+<div class="cards">
+    <div class="card" id="salesCard">Sales: KES 0</div>
+    <div class="card" id="expensesCard">Expenses: KES 0</div>
+    <div class="card" id="profitCard">Profit: KES 0</div>
+    <div class="card" id="cashCard">Cash: KES 0</div>
+    <div class="card" id="mpesaCard">M-PESA: KES 0</div>
+</div>
+
+<div class="buttons">
+    <button id="addRecordBtn">Add Record</button>
+    <button id="exportBtn">Export to Excel</button>
+</div>
+
+<div id="recordsList"></div>
+
+<canvas id="trendChart"></canvas>
+
+<!-- AI Insights -->
+<div class="ai-panel">
+    <h2>AI Insights</h2>
+    <ul id="aiInsights"></ul>
+</div>
+
+<!-- Add/Edit Record Modal -->
+<div id="recordModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 id="modalTitle">Add Record</h2>
+        <form id="recordForm">
+            <label>Category:</label>
+            <select id="recordCategory">
+                <option value="Product">Product</option>
+                <option value="Service">Service</option>
+            </select>
+
+            <label>Name:</label>
+            <input type="text" id="recordProduct" placeholder="Product/Service Name" required>
+
+            <label>Quantity:</label>
+            <input type="number" step="0.01" id="recordQuantity" placeholder="0.25" required>
+
+            <label>Amount (KES):</label>
+            <input type="number" step="0.01" id="recordAmount" placeholder="50" required>
+
+            <label>Payment:</label>
+            <select id="recordPayment">
+                <option value="cash">Cash</option>
+                <option value="mpesa">M-PESA</option>
+            </select>
+
+            <label>Date:</label>
+            <input type="date" id="recordDate">
+
+            <label>Description:</label>
+            <textarea id="recordDesc" placeholder="Optional description"></textarea>
+
+            <button type="submit" id="saveRecordBtn">Save</button>
+        </form>
+    </div>
+</div>
+
+<!-- Receipt Modal -->
+<div id="receiptModal" class="modal">
+  <div class="modal-content" id="receiptContent">
+    <span class="close">&times;</span>
+    <div id="receiptBody"></div>
+    <button onclick="window.print()">Print / Save PDF</button>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
